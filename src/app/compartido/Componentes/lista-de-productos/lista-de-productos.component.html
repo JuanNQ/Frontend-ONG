@@ -1,0 +1,20 @@
+<!-- <p> {{montoTotal}} </p> -->
+
+<div class="productos-grid">
+  <app-producto [Producto]="producto" *ngFor="let producto of listaProductos" (productoSeleccionado)="agregarCarritoTienda($event)"
+  (toggleProductoSeleccionado)="verDetalleProducto($event)"></app-producto>
+</div>
+<button (click)="paginaSiguiente()"> SIGUENTE </button>
+<div class="producto-detalle" [class.active]="estadoDetalleProducto">
+  <button (click)="estadoMaestroDetalleProducto()">CLOSE</button>
+  <img [src]="productoSeleccionado.imagen" alt="nombre">
+  <h1> {{productoSeleccionado.nombre}} </h1>
+  <p> {{productoSeleccionado.precio | currency: 'S/. '}} </p>
+  <button (click)="agregarCarritoTienda(productoSeleccionado)" > AGREGAR A CARRITO </button>
+</div>
+
+<div *ngFor="let producto of ProductosComprados">
+  <img width="50px" [src]="producto.imagen" alt="img">
+  <p> {{producto.nombre}} </p>
+  <p> {{producto.precio}} </p>
+</div>

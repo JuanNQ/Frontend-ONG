@@ -1,0 +1,132 @@
+.Nav-Escritorio{
+  // position: absolute;
+  // top: 0px;
+  // left: 0px;
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+  height: 50px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  box-shadow: 0px 2px 5px rgb(black, .1);
+
+  .Nav-Izquierda{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    img{
+      height: 12px;
+
+      cursor: pointer;
+    }
+    ul{
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    a{
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.478);
+      &.active{
+        border: rgba(11, 3, 76, 0.46) 1px solid;
+        border-radius: 4px;
+        padding: 1px 5px 1px 5px;
+      }
+    }
+  //   a:hover{
+  //     border: rgba(11, 3, 76, 0.46) 1px solid;
+  //     border-radius: 4px;
+  //     padding: 1px 5px 1px 5px;
+  // }
+  }
+
+  .Nav-Derecha{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+    img{
+      height: 25px;
+      cursor: pointer;
+    }
+    a{
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.478);
+    }
+  }
+}
+
+.Nav-Celular{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  // box-shadow: 0px 2px 5px rgb(black, .1);
+  >div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button{
+      border: none;
+      background-color: white;
+    }
+    .menu{
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+    }
+    .logo{
+      height: 15px;
+      cursor: pointer;
+    }
+    .carritoCompras{
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+    }
+  }
+  .lista{
+    transition: all ease-out .5s;
+    transform: translateX(100%);
+    // list-style: none;
+    // margin-top: 70px;
+    &.active{
+      transform: translateX(0);
+    }
+  }
+  a{
+    text-decoration: none;
+    color: black;
+    &.active{
+      border: rgba(11, 3, 76, 0.46) 1px solid;
+      border-radius: 4px;
+      padding: 1px 5px 1px 5px;
+    }
+  }
+  li{
+    margin: 20px 0 20px 0 ;
+    list-style: none;
+  }
+}
+
+/* Medium only */
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  .Nav-Celular {
+    display: none;
+  }
+  .Nav-Escritorio {
+    display: flex;
+    .Nav-Izquierda{
+      ul{
+        gap: 10px;
+        padding-left: 20px;
+      }
+    }
+  }
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+  .Nav-Celular {
+    display: none;
+  }
+  .Nav-Escritorio {
+    display: flex;
+  }
+}

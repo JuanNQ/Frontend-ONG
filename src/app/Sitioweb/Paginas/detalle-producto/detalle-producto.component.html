@@ -1,0 +1,7 @@
+<!-- <app-producto (toggleProductoSeleccionado)="verDetalleProducto($event)"></app-producto> -->
+<button (click)="irAtras()">BACK</button>
+<h2> {{productoSeleccionado.nombre}} </h2>
+<img [src]="productoSeleccionado.imagen" alt="imgProducto">
+<p> {{productoSeleccionado.precio | currency : 'S/. ' }} </p>
+<p> {{productoSeleccionado.descripcion}} </p>
+

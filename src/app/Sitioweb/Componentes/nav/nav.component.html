@@ -1,0 +1,41 @@
+<div class="Nav-Escritorio">
+  <div class="Nav-Izquierda">
+    <img [src]="logo" alt="logo">
+    <ul>
+      <li><a  routerLinkActive="active" routerLink="Inicio">Todo</a>  </li>
+      <li *ngFor="let categoria of listaCategorias">
+        <a routerLinkActive="active" [routerLink]="['/Categoria',categoria.id]"> {{categoria.nombre}} </a>
+      </li>
+    </ul>
+  </div>
+  <div class="Nav-Derecha">
+    <div>
+      <button *ngIf="!usuario; else elseBlock" (click)="ingresarUsuario()" >INGRESAR</button>
+      <ng-template #elseBlock>
+        <a routerLink="/Perfil"> {{usuario?.correo}} </a>
+        <button (click)="cerrarSesion()"> SALIR </button>
+      </ng-template>
+      <!-- <button (click)="perfilUsuario()" >PERFIL</button> -->
+    </div>
+    <div>
+      <a href=""><img [src]="carritoCompras" alt="carritoCompras"></a>
+      <span class="contador"> {{contador}} </span>
+      <span class="montoTotal"> {{montoTotal}} </span>
+    </div>
+  </div>
+</div>
+<div class="Nav-Celular">
+  <div>
+    <button (click)="ToggleButton()" ><img class="menu" [src]="menu" alt=""></button>
+    <img class="logo" [src]="logo" alt="logo">
+    <img class="carritoCompras" [src]="carritoCompras" alt="carritoCompras">
+  </div>
+  <div class="lista" [class.active]="toggleButton">
+    <ul *ngIf="toggleButton" >
+      <li><a routerLinkActive="active" routerLink="Inicio">Todo</a> </li>
+      <li *ngFor="let categoria of listaCategorias">
+        <a routerLinkActive="active" [routerLink]="['/Categoria',categoria.id]"> {{categoria.nombre}} </a>
+      </li>
+    </ul>
+  </div>
+</div>

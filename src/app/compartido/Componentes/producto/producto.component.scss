@@ -1,0 +1,27 @@
+.producto-contenedor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2{
+    margin: 0;
+  }
+  >div{
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    >div{
+      p{
+        margin: 0;
+      }
+    }
+    button:nth-child(2){
+      background-color: white;
+      border: none;
+    }
+    img{
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+  }
+}

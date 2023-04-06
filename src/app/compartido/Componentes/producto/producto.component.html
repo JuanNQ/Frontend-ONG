@@ -1,0 +1,12 @@
+<div class="producto-contenedor">
+  <app-img [routerLink]="['/Producto', Producto.id]" [img]="Producto.imagen"></app-img>
+  <h2> {{Producto.nombre}} </h2>
+  <div>
+    <div>
+      <p> {{Producto.precio | currency: 'S/. ' }} </p>
+      <p> {{Producto.categoria.categoria }} </p>
+    </div>
+    <button (click)="agregarCarrito()"><img [src]="imgButton" alt="buttonAgregar"></button>
+    <button routerLink="." [queryParams]="{producto: Producto.id}"> VER DETALLE </button>
+  </div>
+</div>
