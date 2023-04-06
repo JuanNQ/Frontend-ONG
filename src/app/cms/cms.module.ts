@@ -5,13 +5,15 @@ import { CmsRoutingModule } from './cms-routing.module';
 import { TasksComponent } from './Paginas/tasks/tasks.component';
 import { GridComponent } from './Paginas/grid/grid.component';
 import { LayoutComponent } from './Componentes/layout/layout.component';
+import { NavComponent } from './Componentes/nav/nav.component';
 
 
 @NgModule({
   declarations: [
     TasksComponent,
     GridComponent,
-    LayoutComponent
+    LayoutComponent,
+    NavComponent
   ],
   imports: [
     CommonModule,
