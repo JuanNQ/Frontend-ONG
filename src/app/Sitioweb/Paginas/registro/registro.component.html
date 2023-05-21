@@ -1,1 +1,31 @@
-<p>registro works!</p>
+<div class="cardLogin">
+  <h1>REGISTRATE AHORA</h1>
+  <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="img" class="img">
+  <form [formGroup]="form" class="formTable" (ngSubmit)="registrar()">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre de Usuario</mat-label>
+      <mat-icon matPrefix>person</mat-icon>
+      <input matInput placeholder="usuario" formControlName="usuario">
+      <!-- <mat-error *ngIf="correoForm?.invalid"> {{mensajeError()}} </mat-error> -->
+      <mat-error *ngIf="usuarioForm?.touched && usuarioForm?.hasError('required')"> Este campo es requerido </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Correo Electrónico</mat-label>
+      <mat-icon matPrefix>mail</mat-icon>
+      <input matInput placeholder="ejemplo@gmail.com" formControlName="correo">
+      <!-- <mat-error *ngIf="correoForm?.invalid"> {{mensajeError()}} </mat-error> -->
+      <mat-error *ngIf="correoForm?.touched && correoForm?.hasError('required')"> Este campo es requerido </mat-error>
+      <mat-error *ngIf="correoForm?.touched && correoForm?.hasError('email')"> Por favor ingresar un correo válido </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="hide?'password':'text'" formControlName="contrasenia">
+      <button mat-icon-button matPrefix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="contraseniaForm?.touched && contraseniaForm?.hasError('required')"> Este campo es requerido </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Registrar</button>
+  </form>
+
+</div>

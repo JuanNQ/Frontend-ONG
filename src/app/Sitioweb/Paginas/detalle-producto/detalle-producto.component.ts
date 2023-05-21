@@ -3,6 +3,7 @@ import { ProductosService } from '../../../Servicios/productos.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Location } from "@angular/common";
+import { TiendaService } from "src/app/Servicios/tienda.service";
 
 @Component({
   selector: 'app-detalle-producto',
@@ -18,7 +19,8 @@ export class DetalleProductoComponent implements OnInit {
   constructor(
     private productosService:ProductosService,
     private route:ActivatedRoute,
-    private location:Location
+    private location:Location,
+    private tiendaService:TiendaService
   ){}
 
   ngOnInit(): void {
@@ -41,6 +43,10 @@ export class DetalleProductoComponent implements OnInit {
 
   irAtras(){
     this.location.back();
+  }
+
+  agregarCarrito(producto: any){
+    this.tiendaService.agregarCarritoProducto(producto);
   }
 
 }

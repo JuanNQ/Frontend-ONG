@@ -57,6 +57,7 @@ export class AuthService {
   }
 
   cerrarSesion(){
+    this.user.next(null);
     this.tokenService.eliminarToken();
   }
 

@@ -1,2 +1,3 @@
-<app-lista-de-productos [productoId]="productoId" [listaProductos]="listaProductos" (pagSiguiente)="paginaSiguiente()"></app-lista-de-productos>
-<!-- <button (click)="paginaSiguiente()"> SIGUENTE </button> -->
+<app-paginador-filtro (paginadoEvent)="paginadoEvent($event)" (filtro)="filtroSeleccionado($event)" [length]="length"></app-paginador-filtro>
+<app-lista-de-productos [productoId]="productoId" [listaProductos]="listaProductos"></app-lista-de-productos>
+<app-spinner></app-spinner>

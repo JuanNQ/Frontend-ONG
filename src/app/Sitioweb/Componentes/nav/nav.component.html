@@ -9,12 +9,25 @@
     </ul>
   </div>
   <div class="Nav-Derecha">
-    <div>
-      <button *ngIf="!usuario; else elseBlock" (click)="ingresarUsuario()" >INGRESAR</button>
-      <ng-template #elseBlock>
+    <div class="container">
+      <!-- <button *ngIf="!usuario; else elseBlock" (click)="ingresarUsuario()" >INGRESAR</button> -->
+      <div class="Login">
+        <div *ngIf="!usuario; else elseBlock" class="showBody">Hola, Inicia Sesion</div>
+        <ng-template #elseBlock>
+          <div class="showBody">Hola, {{usuario?.nombre}} </div>
+        </ng-template>
+        <div class="LoginBody">
+          <a *ngIf="!usuario" routerLink="InicioSesion">Inicia Sesión</a>
+          <a *ngIf="!usuario" routerLink="Registro">Registrate</a>
+          <a routerLink="Perfil">Mi cuenta</a>
+          <a *ngIf="usuario" routerLink="CarritoCompras">Mis compras</a>
+          <a *ngIf="usuario" (click)="cerrarSesion()" >Cerrar sesión</a>
+        </div>
+      </div>
+      <!-- <ng-template #elseBlock>
         <a routerLink="/Perfil"> {{usuario?.correo}} </a>
         <button (click)="cerrarSesion()"> SALIR </button>
-      </ng-template>
+      </ng-template> -->
       <!-- <button (click)="perfilUsuario()" >PERFIL</button> -->
     </div>
     <div>

@@ -1,7 +1,15 @@
 <!-- <app-producto (toggleProductoSeleccionado)="verDetalleProducto($event)"></app-producto> -->
-<button (click)="irAtras()">BACK</button>
-<h2> {{productoSeleccionado.nombre}} </h2>
-<img [src]="productoSeleccionado.imagen" alt="imgProducto">
-<p> {{productoSeleccionado.precio | currency : 'S/. ' }} </p>
-<p> {{productoSeleccionado.descripcion}} </p>
+<div class="detalle-producto">
+  <div class="card">
+    <img [src]="productoSeleccionado.imagen" alt="imgProducto">
+    <div class="detalle">
+      <p> {{productoSeleccionado.categoria.nombre}} </p>
+      <h1> {{productoSeleccionado.nombre}} </h1>
+      <p> {{productoSeleccionado.descripcion}} </p>
+      <h2> {{productoSeleccionado.precio | currency : 'S/. ' }} </h2>
+      <button (click)="agregarCarrito(productoSeleccionado)"> Agregar a carrito</button>
+      <!-- <button (click)="irAtras()">BACK</button> -->
+    </div>
+  </div>
+</div>
 

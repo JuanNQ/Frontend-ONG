@@ -5,7 +5,8 @@ import { InicioComponent } from './Paginas/inicio/inicio.component';
 import { PerfilComponent } from "./Paginas/perfil/perfil.component";
 import { LayaoutComponent } from './Componentes/layaout/layaout.component';
 import { RegistroComponent } from './Paginas/registro/registro.component';
-
+import { LoginComponent } from "./Paginas/login/login.component";
+import { MiCarritoComponent } from "src/app/Sitioweb/Paginas/mi-carrito/mi-carrito.component";
 
 import { AuthGuard } from "../Guardianes/auth.guard";
 import { ExitGuard } from "../Guardianes/exit.guard";
@@ -44,6 +45,14 @@ const routes: Routes = [
         path: 'Registro',
         canDeactivate: [ExitGuard],
         component: RegistroComponent
+      },
+      {
+        path: 'InicioSesion',
+        component: LoginComponent
+      },
+      {
+        path: 'CarritoCompras',
+        component: MiCarritoComponent
       }
     ]
   }

@@ -8,6 +8,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { QuicklinkModule } from "ngx-quicklink";
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CargaInterceptor } from "src/app/Interceptors/carga.interceptor";
+
 
 @NgModule({
   declarations: [
@@ -18,10 +21,12 @@ import { QuicklinkModule } from "ngx-quicklink";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    QuicklinkModule
+    QuicklinkModule,
+    BrowserAnimationsModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS,useClass: TokenInterceptor, multi:true}
+    {provide: HTTP_INTERCEPTORS,useClass: TokenInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass: CargaInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

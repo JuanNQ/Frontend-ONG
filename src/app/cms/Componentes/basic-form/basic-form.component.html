@@ -1,0 +1,125 @@
+<form [formGroup]="form" (ngSubmit)="save($event)">
+  <div formGroupName="fullName">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre: {{nombreForm?.value}}</mat-label>
+      <input matInput type="text" formControlName="nombre">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <mat-error *ngIf="nombreForm?.touched && nombreForm?.hasError('required')">
+      este campo es requerido
+    </mat-error>
+    <mat-error *ngIf="nombreForm?.touched && nombreForm?.hasError('maxlength')">
+      numero maximo: 8
+    </mat-error>
+
+    <!-- <p> Nombre: {{nombreForm?.value}} {{nombreForm?.valid}} </p>
+    <input type="text" formControlName="nombre">
+    <button [disabled]="nombreForm?.invalid"> OBTENER </button>
+    <p [class.active]="nombreForm?.touched && nombreForm?.hasError('required')" *ngIf="nombreForm?.touched && nombreForm?.hasError('required')"> este campo es requerido </p>
+    <p *ngIf="nombreForm?.touched && nombreForm?.hasError('maxlength')"> numero maximo: 8 </p> -->
+
+    <p> last: {{lastForm?.value}} {{lastForm?.valid}} </p>
+    <input type="text" formControlName="last">
+    <button [disabled]="lastForm?.invalid"> OBTENER </button>
+    <p [class.active]="lastForm?.touched && lastForm?.hasError('required')" *ngIf="lastForm?.touched && lastForm?.hasError('required')"> este campo es requerido </p>
+    <p *ngIf="lastForm?.touched && lastForm?.hasError('maxlength')"> numero maximo: 8 </p>
+  </div>
+
+
+<!-- <p> Nombre: {{nombre.value}} {{nombre.valid}} </p>
+<input type="text" [formControl]="nombre">
+<button [disabled]="nombre.invalid"> OBTENER </button>
+<p [class.active]="nombre.touched && nombre.hasError('required')" *ngIf="nombre.touched && nombre.hasError('required')"> este campo es requerido </p>
+<p *ngIf="nombre.touched && nombre.hasError('maxlength')"> numero maximo: 8 </p> -->
+
+
+<!-- <p> Edad: {{edadForm?.value}} </p>
+<input type="number" formControlName="edad">
+<p [class.active]="edadForm?.touched && edadForm?.hasError('required')" *ngIf="edadForm?.touched && edadForm?.hasError('required')"> este campo es requerido </p>
+<p *ngIf="edadForm?.touched && edadForm?.hasError('min')"> min </p>
+<p *ngIf="edadForm?.touched && edadForm?.hasError('max')"> max </p>
+<p> Fecha: {{fechaForm?.value | date}} </p>
+<input type="date" formControlName="fecha">
+<p> Color: {{colorForm?.value}} </p>
+<input type="color" formControlName="color">
+<p> Telefono: {{telefonoForm?.value}} </p>
+<input type="tel" formControlName="telefono">
+<p> Correo: {{correoForm?.value}} </p>
+<input type="email" formControlName="correo">
+<p [class.active]="correoForm?.touched && correoForm?.hasError('required')" *ngIf="correoForm?.touched && correoForm?.hasError('required')"> este campo es requerido </p>
+<p *ngIf="correoForm?.touched && correoForm?.hasError('email')"> email </p>
+<p> Categoria: {{categoriaForm?.value}} </p>
+<select formControlName="categoria">
+  <option value="categoria-1">Categoria 1</option>
+  <option value="categoria-2">Categoria 2</option>
+  <option value="categoria-3">Categoria 3</option>
+  <option value="categoria-4">Categoria 4</option>
+</select>
+<p> Categoria Multiple: {{categoriaMForm?.value}} </p>
+<select formControlName="categoriaM" multiple>
+  <option value="categoriaM-1">CategoriaM 1</option>
+  <option value="categoriaM-2">CategoriaM 2</option>
+  <option value="categoriaM-3">CategoriaM 3</option>
+  <option value="categoriaM-4">CategoriaM 4</option>
+</select>
+
+<p> {{checkbokForm?.value}} </p>
+<input type="checkbox" formControlName="checkbok">checkbok
+
+<p> {{radioForm?.value}} </p>
+<input type="radio" name="radio" value="radio-1" formControlName="radio">radio1
+<input type="radio" name="radio" value="radio-2" formControlName="radio">radio2
+<input type="radio" name="radio" value="radio-3" formControlName="radio">radio3
+<p> {{radioooForm?.value}} </p>
+<input type="radio" name="radiooo" value="radiooo-1" formControlName="radiooo">radiooo1
+<input type="radio" name="radiooo" value="radiooo-2" formControlName="radiooo">radiooo2
+<input type="radio" name="radiooo" value="radiooo-3" formControlName="radiooo">radiooo3
+
+<button type="submit">ENVIAR</button> -->
+
+</form>
+
+
+<!-- <form [formGroup]="form" (ngSubmit)="enviar()">
+  <p> {{nombreForm?.value}} {{nombreForm?.valid}} </p>
+  <input formControlName="nombre" type="text">nombre
+  <button [disabled]="nombreForm?.invalid">BOTON</button>
+  <p *ngIf="nombreForm?.hasError('required') && nombreForm?.touched">Este campo es requerido</p>
+
+
+  <button type="submit"> enviar </button>
+</form> -->
+
+
+<!-- <p> {{apellido.value}} </p>
+<input [formControl]="apellido" type="text">apellido
+
+<p> {{radio.value}} {{radio.valid}} </p>
+<input [formControl]="radio" name="radio" value="radio-1" type="radio">radio1
+<input [formControl]="radio" name="radio" value="radio-2" type="radio">radio2
+<input [formControl]="radio" name="radio" value="radio-3" type="radio">radio3
+
+<p> {{radio2.value}} </p>
+<input [formControl]="radio2" name="radio2" value="radio-1" type="radio">radio1
+<input [formControl]="radio2" name="radio2" value="radio-2" type="radio">radio2
+<input [formControl]="radio2" name="radio2" value="radio-3" type="radio">radio3
+
+<p> {{checkbok.value}} {{checkbok.valid}}  </p>
+<input [formControl]="checkbok" type="checkbox">checkbok1
+<input [formControl]="checkbok" type="checkbox">checkbok2
+<input [formControl]="checkbok" type="checkbox">checkbok3
+
+<p> {{categoria.value}} {{categoria.valid}} </p>
+<select [formControl]="categoria">
+  <option value="categoria-1">categoria 1</option>
+  <option value="categoria-2">categoria 2</option>
+  <option value="categoria-3">categoria 3</option>
+</select>
+
+<p> {{categoria2.value}} {{categoria2.valid}} </p>
+<select [formControl]="categoria2" multiple>
+  <option value="categoria-1">categoria 1</option>
+  <option value="categoria-2">categoria 2</option>
+  <option value="categoria-3">categoria 3</option>
+</select> -->

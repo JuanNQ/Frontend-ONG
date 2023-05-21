@@ -1,7 +1,8 @@
 .productos-grid{
-  position: relative;
+  // position: relative;
   flex-direction: column;
   display: flex;
+  padding: 60px 0 20px 0;
 }
 
 .producto-detalle{
@@ -15,6 +16,7 @@
   background-color: white;
   transition: all ease-out .5s;
   transform: translateX(100%);
+  z-index: 2;
   &.active{
     transform: translateX(0);
   }

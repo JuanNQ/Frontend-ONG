@@ -1,1 +1,5 @@
-<p>mi-carrito works!</p>
+<div class="card">
+  <div class="productos" *ngFor="let producto of productosComprados">
+    <img [src]="producto.imagen" alt="img">
+  </div>
+</div>

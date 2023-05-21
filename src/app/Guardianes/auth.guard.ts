@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
     .pipe(
       map(usuario=>{
         if (!usuario) {
-          this.router.navigate(['/Inicio'])
+          this.router.navigate(['/InicioSesion'])
           return false;
         }
         return true;

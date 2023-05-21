@@ -27,7 +27,7 @@ export class ListaDeProductosComponent {
     private productosService:ProductosService,
     private tiendaService:TiendaService
   ){
-    this.ProductosComprados=tiendaService.getProductosComprados();
+    // this.ProductosComprados=tiendaService.getProductosComprados();
   }
 
   agregarCarritoTienda(Producto: any){

@@ -31,12 +31,23 @@ export class ProductosService {
     // return this.http.get("https://fakestoreapi.com/products");
     return this.http.get<any>(`${this.urlProductos}/listarProductos`, {headers: this.httpOptions.headers});
   }
-  public getListaProductosListados(size: number, page:number){
+  // public getListaProductosListados(size: number, page:number){
+  //   // return this.http.get("https://fakestoreapi.com/products");
+  //   let params = new HttpParams();
+  //   // if (size && page) {
+  //     params = params.set('size', size);
+  //     params = params.set('page', page);
+  //   // }
+
+  //   return this.http.get<any>(`${this.urlProductos}/listarProductosPaginados`, { headers: this.httpOptions.headers, params: params });//, context:checkToken()
+  // }
+  public getListaProductosListados(size: number, page:number, filtro:any){
     // return this.http.get("https://fakestoreapi.com/products");
     let params = new HttpParams();
     // if (size && page) {
       params = params.set('size', size);
       params = params.set('page', page);
+      params = params.set('filtro', filtro);
     // }
 
     return this.http.get<any>(`${this.urlProductos}/listarProductosPaginados`, { headers: this.httpOptions.headers, params: params });//, context:checkToken()
@@ -47,10 +58,12 @@ export class ProductosService {
     return this.http.get<listarProductosTotalesDto>(`${this.urlProductos}/${id}`, {headers: this.httpOptions.headers});
   }
 
-  public getProductosPorCategoria(id: string, page: number, size: number){
+  public getProductosPorCategoria(id: string, pageIndex: number, pageSize: number, filtro: number){
     let params = new HttpParams();
-    params = params.set('page',page);
-    params = params.set('size',size);
+    params = params.set('page',pageIndex);
+    params = params.set('size',pageSize);
+    params = params.set('filtro', filtro);
+
     return this.http.get<any>(`${this.urlProductos}/${id}/productos`, {headers: this.httpOptions.headers, params:params});
   }
 
