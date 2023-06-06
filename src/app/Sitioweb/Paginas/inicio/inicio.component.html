@@ -1,3 +1,4 @@
-<app-paginador-filtro (paginadoEvent)="paginadoEvent($event)" (filtro)="filtroSeleccionado($event)" [length]="length"></app-paginador-filtro>
-<app-lista-de-productos [productoId]="productoId" [listaProductos]="listaProductos"></app-lista-de-productos>
+<app-paginador-filtro (paginadoEvent)="paginadoEvent($event)" (filtro)="filtroSeleccionado($event)" (search)="searchSelect($event)"
+[length]="length" [pageIndex]="pageIndex"></app-paginador-filtro>
+<app-lista-de-productos [productoId]="productoId" [listaProductos]="listaProductosM"></app-lista-de-productos>
 <app-spinner></app-spinner>

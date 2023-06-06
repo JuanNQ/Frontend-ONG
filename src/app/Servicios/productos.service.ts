@@ -53,6 +53,18 @@ export class ProductosService {
     return this.http.get<any>(`${this.urlProductos}/listarProductosPaginados`, { headers: this.httpOptions.headers, params: params });//, context:checkToken()
   }
 
+  public getProductosPaginadosSearch(size: number, page: number, filtro:any, search: any){
+
+    let params = new HttpParams();
+
+    params = params.set('size', size);
+    params = params.set('page',page);
+    params = params.set('filtro',filtro);
+    params = params.set('search',search);
+
+    return this.http.get<any>(`${this.urlProductos}/listarProductosPaginadosSearch`, {headers: this.httpOptions.headers, params: params});
+  }
+
   public getProducto(id: string): Observable<any>{
     // return this.http.get("https://fakestoreapi.com/products");
     return this.http.get<listarProductosTotalesDto>(`${this.urlProductos}/${id}`, {headers: this.httpOptions.headers});
@@ -65,6 +77,17 @@ export class ProductosService {
     params = params.set('filtro', filtro);
 
     return this.http.get<any>(`${this.urlProductos}/${id}/productos`, {headers: this.httpOptions.headers, params:params});
+  }
+
+
+  public getProductosPorCategoriaSearch(id: string, pageIndex: number, pageSize: number, filtro: number, search: string){
+    let params = new HttpParams();
+    params = params.set('page',pageIndex);
+    params = params.set('size',pageSize);
+    params = params.set('filtro', filtro);
+    params = params.set('search', search);
+
+    return this.http.get<any>(`${this.urlProductos}/${id}/productosSearch`, {headers: this.httpOptions.headers, params:params});
   }
 
   public getTraerCategorias(){

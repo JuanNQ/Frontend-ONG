@@ -3,6 +3,7 @@ import { FormControl } from "@angular/forms";
 import { PageEvent, MatPaginatorIntl } from "@angular/material/paginator";
 import { Subject } from "rxjs";
 import { $localize } from "@angular/localize/init";
+import { ActivatedRoute } from "@angular/router";
 
 @Injectable()
 export class MyCustomPaginatorIntl implements MatPaginatorIntl {
@@ -35,13 +36,14 @@ export class MyCustomPaginatorIntl implements MatPaginatorIntl {
 })
 export class PaginadorFiltroComponent implements OnInit{
 
-  pageIndex = 0;
+  @Input() pageIndex = 0;
   pageSize = 10;
   pageSizeOptions = [5,10,20,50];
   @Input() length = 0;
   pagina:PageEvent = new PageEvent();
   listaProductos = [];
   @Output() paginadoEvent = new EventEmitter();
+  categoriaId: string | null = null;
 
   filtros = [
     {
@@ -58,12 +60,43 @@ export class PaginadorFiltroComponent implements OnInit{
     }]
 
   filtrosSelect = new FormControl('0');
+  searchSelect = new FormControl('');
   @Output() filtro = new EventEmitter();
+  @Output() search = new EventEmitter();
+
+  constructor(
+    private activatedRoute:ActivatedRoute
+  ){}
 
   ngOnInit(): void {
+
+    this.activatedRoute.paramMap.subscribe(parametros=>{
+      if (this.categoriaId != parametros.get('id')) {
+       if(this.filtrosSelect.value != '0') this.filtrosSelect.setValue('0');
+       if(this.searchSelect.value != ''){
+        this.searchSelect.setValue('');
+        // this.obtenerValor();
+       }
+      }
+      this.categoriaId = parametros.get('id');
+    })
+
     this.filtrosSelect.valueChanges.subscribe(data=>{
       this.filtro.emit(data);
     })
+
+    // this.searchSelect.valueChanges.subscribe(data=>{
+    //   this.search.emit(data);
+    // })
+    // this.searchSelect.valueChanges.subscribe(data=>{
+    //   console.log(data);
+    //   this.search.emit(data);
+    // })
+  }
+
+  obtenerValor(){
+    const value = this.searchSelect.value;
+    this.search.emit(value);
   }
 
   paginaEvento(evento: PageEvent){

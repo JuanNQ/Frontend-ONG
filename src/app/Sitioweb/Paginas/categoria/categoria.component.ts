@@ -14,14 +14,16 @@ export class CategoriaComponent implements OnInit{
   categoriaId: string | null = null;
   productoId: string | null = null;
   productosPorCategoria = [];
-  size = 10;
-  page = 0;
+  productosPorCategoriaM = [];
+  // size = 10;
+  // page = 0;
   pageIndex = 0;
   pageSize = 10;
   pageSizeOptions = [5,10,20,50];
   length = 0;
   pagina:PageEvent | null = null;
   filtro: number = 0;
+  search: string = '';
 
   constructor(
     private productosService:ProductosService,
@@ -33,8 +35,16 @@ export class CategoriaComponent implements OnInit{
       this.route.paramMap.pipe(
         switchMap(parametros=>{
           // this.categoriaId == parametros.get('id')?this.filtro:this.filtro=0;
+          // this.categoriaId == parametros.get('id')?this.filtro:this.filtro=0;
+          if (this.categoriaId != parametros.get('id')) {
+            this.pageIndex = 0;
+            this.filtro = 0;
+            this.search = '';
+          }
           this.categoriaId = parametros.get('id')
           if (this.categoriaId) {
+            console.log("primero");
+
             return this.productosService.getProductosPorCategoria(this.categoriaId,this.pageIndex,this.pageSize,this.filtro);
           }
           return [];
@@ -43,6 +53,9 @@ export class CategoriaComponent implements OnInit{
       .subscribe(data=>{
         console.log(data);
         this.productosPorCategoria = data.content;
+        console.log("primero");
+
+        this.productosPorCategoriaM = data.content;
         this.length = data.totalElements;
         // this.page += 1;
       })
@@ -53,23 +66,45 @@ export class CategoriaComponent implements OnInit{
 
   }
 
-  // paginaSiguiente(){
-  //   if (this.categoriaId) {
-  //     this.productosService.getProductosPorCategoria(this.categoriaId,this.page,this.size).subscribe(data=>{
-  //       this.productosPorCategoria = this.productosPorCategoria.concat(data.content);
-  //       console.log(data);
-  //       })
-  //   }
-  // }
-
   filtroSeleccionado(filtroOutput: number){
     this.filtro = filtroOutput;
+    this.pageIndex = 0;
+    console.log("filtroSeleccionado");
+    if(this.search == '' && this.categoriaId){
+      this.productosService.getProductosPorCategoria(this.categoriaId,this.pageIndex,this.pageSize,this.filtro).subscribe(data=>{
+        this.productosPorCategoria = data.content;
+        console.log("filtroSeleccionado");
+        this.productosPorCategoriaM = data.content;
+        this.length = data.totalElements;
+        console.log(data);
+      })
+    } else if(this.categoriaId){
+      this.productosService.getProductosPorCategoriaSearch(this.categoriaId,this.pageIndex,this.pageSize,this.filtro, this.search).subscribe(data=>{
+        this.productosPorCategoria = data.content;
+        console.log("filtroSeleccionado");
+        this.productosPorCategoriaM = data.content;
+        this.length = data.totalElements;
+        console.log(data);
+      })
+    }
+  }
+
+  searchSelect(searchOutput: string){
+    this.pageIndex = 0;
+    this.search = searchOutput.toLowerCase();
+    // this.productosBuscados = this.listaProductos.filter(producto=>
+    //   producto.nombre.toLowerCase().includes(this.search));
+    // this.listaProductosM = this.productosBuscados;
+    console.log("searchSelect");
     if (this.categoriaId) {
-    this.productosService.getProductosPorCategoria(this.categoriaId,this.pageIndex,this.pageSize,this.filtro).subscribe(data=>{
-      this.productosPorCategoria = data.content;
-      this.length = data.totalElements;
-      console.log(data);
-    })}
+      this.productosService.getProductosPorCategoriaSearch(this.categoriaId,this.pageIndex,this.pageSize,this.filtro, this.search).subscribe(data=>{
+        this.productosPorCategoria = data.content;
+        console.log("searchSelect");
+        this.productosPorCategoriaM = data.content;
+        this.length = data.totalElements;
+        console.log(data);
+      })
+    }
   }
 
   paginadoEvent(paginaOutput: PageEvent){
@@ -78,12 +113,22 @@ export class CategoriaComponent implements OnInit{
     this.length = paginaOutput.length;
     this.pageIndex = paginaOutput.pageIndex;
     this.pageSize = paginaOutput.pageSize;
-    if (this.categoriaId) {
-    this.productosService.getProductosPorCategoria(this.categoriaId,this.pageIndex,this.pageSize,this.filtro).subscribe(data=>{
-      this.productosPorCategoria = data.content;
-      this.length = data.totalElements;
-      console.log(data);
-    })}
+    console.log("paginadoEvent");
+    if (this.search == '' && this.categoriaId) {
+      this.productosService.getProductosPorCategoria(this.categoriaId,this.pageIndex,this.pageSize,this.filtro).subscribe(data=>{
+        this.productosPorCategoria = data.content;
+        this.productosPorCategoriaM = data.content;
+        this.length = data.totalElements;
+        console.log(data);
+      })
+    } else if (this.categoriaId){
+      this.productosService.getProductosPorCategoriaSearch(this.categoriaId,this.pageIndex,this.pageSize,this.filtro,this.search).subscribe(data=>{
+        this.productosPorCategoria = data.content;
+        this.productosPorCategoriaM = data.content;
+        this.length = data.totalElements;
+        console.log(data);
+      })
+    }
   }
 
 }

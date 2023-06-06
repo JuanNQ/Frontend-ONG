@@ -9,6 +9,11 @@
     </mat-select>
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <input matInput type="text" placeholder="Buscar productos..." [formControl]="searchSelect" (keyup.enter)="obtenerValor()">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
   <mat-paginator
   [pageIndex]="pageIndex"
     [pageSize]="pageSize"
