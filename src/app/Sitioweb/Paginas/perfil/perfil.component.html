@@ -1,6 +1,16 @@
-<div *ngIf="usuario">
-  <h1> {{usuario.nombre}} </h1>
-  <h1> {{usuario.role}} </h1>
-  <p>  {{usuario.correo}}  </p>
-  <a *ngIf="usuario.role === 'ADMIN'" routerLink="/cms">IR AL CMS</a>
+<div class="container">
+<mat-card *ngIf="usuario">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-subtitle>
+      <span class="md-subhead description">HOLA</span>
+    </mat-card-subtitle>
+    <mat-card-title>
+      <span class="md-headline">{{usuario.nombre}}</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-actions align="end" *ngIf="usuario.role === 'ADMIN'">
+    <a routerLink="/cms">IR AL CMS</a>
+  </mat-card-actions>
+</mat-card>
 </div>
